@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <title>Hello React</title>
+</head>
+<body>
+         <header class="header">
+            <h1 class="header-name">Student -  Teona Chareqisvhili</h1>
+         </header>
+      <div id="start-button"></div>
+
+
+      <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <script type="text/babel">
+        "use strict";
+
+
+     const button = document.getElementById('start-button');
+
+        class PlayGame extends React.Component{
+            constructor(){
+                super();
+                this.state = {liked:false};
+            };
+            render() {
+          if (this.state.liked) {
+            return <Counter/>
+          }
+           return(
+             <button className="btn" onClick ={()=>this.setState({liked:true})}>Start Counter</button>
+           );
+        }
+        }
+
+        class Counter extends React.Component{
+               constructor(){
+                super()
+                this.state = {counter:0};
+               }
+               render(){
+                if (this.state.liked) {
+                     return (
+                        <PlayGame />
+                       
+                     )
+                 }
+                  return  (
+                   
+                       <div className="counter-btns">
+                          <button className="btn"  onClick = {()=>this.setState({counter:this.state.counter+1})}>Increase</button>
+                          <p className="count">Counter - {this.state.counter}</p>
+                          <button className="btn" onClick = {()=>this.setState({counter:this.state.counter-1})}>Decrease</button>
+                          <button className="btn" onClick={() => this.setState({ liked: true })}>Done</button>
+                        </div>         
+                    
+                  )
+                  
+               }
+        }
+
+      
+
+        ReactDOM.render(
+            <PlayGame/>, button
+        );
+       
+      </script>
+</body>
+</html>
